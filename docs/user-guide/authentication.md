@@ -8,7 +8,7 @@ Secure Dash utiliza un sistema de autenticación robusto que garantiza la seguri
 
 La pantalla principal de autenticación ofrece una interfaz moderna y segura:
 
-![Placeholder: Pantalla completa de autenticación](assets/auth-full-screen.png)
+![Placeholder: Pantalla completa de autenticación](../assets/auth-full-screen.png)
 
 #### Características Visuales
 - **Diseño responsivo** que se adapta a cualquier dispositivo
@@ -28,7 +28,7 @@ La pantalla principal de autenticación ofrece una interfaz moderna y segura:
 
 ### Formulario de Registro
 
-![Placeholder: Formulario de registro](assets/register-form.png)
+![Placeholder: Formulario de registro](../assets/register-form.png)
 
 #### Campos Requeridos
 
@@ -75,7 +75,7 @@ El formulario valida automáticamente:
 
 ### Formulario de Login
 
-![Placeholder: Formulario de login](assets/login-form.png)
+![Placeholder: Formulario de login](../assets/login-form.png)
 
 #### Métodos de Autenticación
 
@@ -148,7 +148,7 @@ Para cerrar sesión de forma segura:
 2. Selecciona "Cerrar Sesión"
 3. Serás redirigido a la pantalla de login
 
-![Placeholder: Menú de usuario](assets/user-menu.png)
+![Placeholder: Menú de usuario](../assets/user-menu.png)
 
 ## :warning: Solución de Problemas
 

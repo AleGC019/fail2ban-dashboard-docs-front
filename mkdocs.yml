@@ -35,6 +35,12 @@ theme:
 extra_css:
   - assets/extra.css
 
+# Configurar directorio de assets estáticos
+extra_javascript: []
+
+# Permitir que MkDocs sirva archivos estáticos
+use_directory_urls: true
+
 markdown_extensions:
   - admonition
   - pymdownx.inlinehilite
@@ -71,7 +77,7 @@ nav:
     - Gestión de Logs: user-guide/logs-management.md
     - IPs Bloqueadas: user-guide/banned-ips.md
     - Gestión de Usuarios: user-guide/user-management.md
-    - Solución de Problemas: user-guide/troubleshooting.md
+    # - Solución de Problemas: user-guide/troubleshooting.md
   - API Reference:
     - Referencia de la API: api/reference.md
     - Autenticación: api/authentication.md

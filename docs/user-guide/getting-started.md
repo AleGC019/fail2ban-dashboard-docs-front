@@ -10,7 +10,7 @@ Esta guía te ayudará a comenzar con Secure Dash desde cero, cubriendo desde el
 2. Navega a la URL de Secure Dash
 3. Verás la pantalla de autenticación
 
-![Placeholder: Pantalla de login de Secure Dash](assets/login-screen.png)
+![Placeholder: Pantalla de login de Secure Dash](../assets/auth-full-screen.png)
 
 ### 2. Primer Inicio de Sesión
 
@@ -32,7 +32,7 @@ Esta guía te ayudará a comenzar con Secure Dash desde cero, cubriendo desde el
 
 Una vez autenticado, accederás al dashboard principal:
 
-![Placeholder: Vista general del dashboard](assets/dashboard-overview.png)
+![Placeholder: Vista general del dashboard](../assets/user-menu.png)
 
 ### Elementos Principales
 
@@ -80,7 +80,7 @@ El sidebar contiene las siguientes secciones:
 - Presiona `/` para enfocar
 - Busca en todas las secciones
 
-![Placeholder: Función de búsqueda](assets/search-function.png)
+![Placeholder: Función de búsqueda](../assets/search-function.png)
 
 #### Cambio de Tema
 - Botón en la esquina superior derecha
@@ -107,7 +107,7 @@ El dashboard muestra cuatro métricas clave:
 | **Logs de Información** | Eventos informativos |
 | **Logs de Alerta** | Eventos que requieren atención |
 
-![Placeholder: Tarjetas de métricas](assets/metrics-cards.png)
+![Placeholder: Tarjetas de métricas](../assets/metrics-cards.png)
 
 ### Gráficos en Tiempo Real
 
@@ -121,7 +121,6 @@ El dashboard muestra cuatro métricas clave:
 - Número de bloqueos por IP
 - Nivel de riesgo codificado por colores
 
-![Placeholder: Gráficos del dashboard](assets/dashboard-charts.png)
 
 ## :gear: Configuración Inicial
 
@@ -155,7 +154,6 @@ El dashboard muestra cuatro métricas clave:
 
 - **[Navegación](navigation.md)** - Aprende más sobre la interfaz
 - **[Dashboard](dashboard.md)** - Guía detallada del panel principal
-- **[Solución de Problemas](troubleshooting.md)** - Resuelve problemas comunes
 
 ### Contacto
 

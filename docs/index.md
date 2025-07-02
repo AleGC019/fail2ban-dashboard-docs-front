@@ -52,7 +52,7 @@ Secure Dash es una aplicación web moderna que proporciona una interfaz intuitiv
 | [**Dashboard**](user-guide/dashboard.md) | Visión general del panel principal |
 | [**Logs**](user-guide/logs-management.md) | Gestión de logs de Fail2ban |
 | [**IPs Bloqueadas**](user-guide/banned-ips.md) | Administración de IPs |
-| [**Usuarios**](user-guide/users-management.md) | Control de usuarios del sistema |
+| [**Usuarios**](user-guide/user-management.md) | Control de usuarios del sistema |
 
 ## :computer: Requisitos del Sistema
 

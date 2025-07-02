@@ -6,7 +6,7 @@ La sección de IPs Bloqueadas te permite monitorear, analizar y gestionar todas 
 
 ### Pantalla Principal
 
-![Placeholder: Vista completa de IPs bloqueadas](assets/banned-ips-overview.png)
+![Placeholder: Vista completa de IPs bloqueadas](../assets/banned-ips-overview.png)
 
 La gestión de IPs bloqueadas incluye:
 
@@ -19,7 +19,7 @@ La gestión de IPs bloqueadas incluye:
 
 ### Métricas Principales
 
-![Placeholder: Estadísticas de IPs bloqueadas](assets/banned-ips-stats.png)
+![Placeholder: Estadísticas de IPs bloqueadas](../assets/banned-ips-stats.png)
 
 #### Indicadores Clave
 
@@ -51,7 +51,7 @@ La gestión de IPs bloqueadas incluye:
 
 ### Bloqueo Manual de IPs
 
-![Placeholder: Formulario de bloqueo manual](assets/manual-ban-form.png)
+![Placeholder: Formulario de bloqueo manual](../assets/manual-ban-form.png)
 
 #### Proceso de Bloqueo
 
@@ -86,7 +86,7 @@ La gestión de IPs bloqueadas incluye:
 
 #### Proceso de Desbloqueo
 
-![Placeholder: Botón de desbloqueo en tabla](assets/unban-button.png)
+![Placeholder: Botón de desbloqueo en tabla](../assets/unban-button.png)
 
 1. **Localizar IP** en la tabla
 2. **Clic en botón "Desbloquear"** (icono de candado abierto)
@@ -102,58 +102,23 @@ La gestión de IPs bloqueadas incluye:
 
 ### Filtros Avanzados
 
-![Placeholder: Barra de filtros de IPs](assets/ip-filters-bar.png)
+![Placeholder: Barra de filtros de IPs](../assets/ip-filters-bar.png)
 
 #### Filtro por Tiempo de Bloqueo
 
 **Opciones Disponibles:**
-- **Última hora**: IPs bloqueadas recientemente
-- **Últimas 6 horas**: Actividad del turno actual
 - **Últimas 24 horas**: Actividad diaria completa
-- **Última semana**: Análisis semanal
-- **Personalizado**: Rango específico de fechas
 
 #### Filtro por Jail
 
 **Servicios Monitoreados:**
-- **sshd**: Ataques de SSH (por defecto)
-- **apache**: Ataques web HTTP
-- **nginx**: Ataques web con Nginx
-- **postfix**: Ataques de email
-- **custom**: Jails personalizados
+- **sshd**: Ataques de SSH 
 
-#### Aplicación de Filtros
-
-=== "Filtro Simple"
-    - **Un filtro activo** por vez
-    - **Aplicación inmediata** al seleccionar
-    - **Indicador visual** del filtro activo
-
-=== "Filtro Combinado"
-    - **Múltiples criterios** simultáneos
-    - **Filtrado incremental** para refinar
-    - **URL actualizada** para compartir vista
-
-### Búsqueda por IP
-
-#### Búsqueda Directa
-- **Campo de texto** para dirección IP exacta
-- **Autocompletado** con IPs recientes
-- **Validación** de formato en tiempo real
-
-#### Búsqueda por Rango
-```
-Ejemplos de búsqueda:
-• 192.168.1.* - Busca toda la subred
-• 10.0.0.1-10.0.0.100 - Rango específico
-• 192.168.*.* - Red clase B completa
-```
-
-## :table: Tabla de IPs Bloqueadas
+## Tabla de IPs Bloqueadas
 
 ### Estructura de Datos
 
-![Placeholder: Tabla completa de IPs bloqueadas](assets/banned-ips-table.png)
+![Placeholder: Tabla completa de IPs bloqueadas](../assets/banned-ips-table.png)
 
 #### Columnas Principales
 
@@ -163,7 +128,6 @@ Ejemplos de búsqueda:
 | **Ban Time** | Momento del bloqueo | Ordenable, formato relativo |
 | **Jail** | Servicio que detectó la amenaza | Filtrable por tipo |
 | **Threat Level** | Nivel de riesgo calculado | Badge codificado por color |
-| **Country** | País de origen | Bandera e ISO code |
 | **Actions** | Acciones disponibles | Desbloquear, detalles |
 
 #### Niveles de Amenaza
@@ -188,37 +152,17 @@ Ejemplos de búsqueda:
     - **Criterios**: Errores menores, actividad mínima
     - **Acción**: Seguimiento básico
 
-### Información Geográfica
-
-#### Visualización de País
-- **Banderas** de países para identificación rápida
-- **Código ISO** del país (US, CN, RU, etc.)
-- **Tooltip** con nombre completo del país
-
-#### Análisis Geográfico
-- **Top 5 países** con más amenazas
-- **Distribución global** de ataques
-- **Patrones regionales** de actividad maliciosa
-
 ## :eye: Panel de Detalles Detallado
 
 ### Información Completa de IP
 
-![Placeholder: Panel de detalles completo de IP](assets/ip-details-panel.png)
+![Placeholder: Panel de detalles completo de IP](../assets/ip-details-panel.png)
 
 #### Información Básica
 
 **Datos de Red:**
 - **Dirección IP**: Completa con formato
 - **Tipo**: IPv4 o IPv6
-- **ISP/Organización**: Proveedor de internet
-- **ASN**: Número de sistema autónomo
-
-**Geolocalización:**
-- **País**: Con bandera y código
-- **Región/Estado**: División administrativa
-- **Ciudad**: Ubicación específica
-- **Coordenadas**: Latitud y longitud
 
 #### Información de Seguridad
 
@@ -234,26 +178,6 @@ Ejemplos de búsqueda:
 - **Total intentos**: Suma de todos los eventos
 - **Servicios atacados**: Lista de jails afectados
 
-#### Contexto Adicional
-
-=== "Información Técnica"
-    - **TTL de conexión**
-    - **User-Agent** (cuando aplique)
-    - **Protocolos utilizados**
-    - **Puertos atacados**
-
-=== "Inteligencia de Amenazas"
-    - **Listas negras** donde aparece la IP
-    - **Reputación** en servicios externos
-    - **Categorización** de amenaza
-    - **Confianza** del análisis
-
-=== "Recomendaciones"
-    - **Acciones sugeridas** por el sistema
-    - **Tiempo de bloqueo** recomendado
-    - **Monitoreo adicional** requerido
-    - **Escalación** a autoridades si aplica
-
 ### Navegación en Detalles
 
 #### Controles del Panel
@@ -262,32 +186,20 @@ Ejemplos de búsqueda:
 - **Desbloquear**: Acción directa (solo admins)
 - **Reporte**: Generar reporte específico de la IP
 
-#### Acciones Avanzadas
-
-**Para Administradores:**
-- **Bloqueo permanente**: Añadir a lista negra
-- **Whitelisting**: Añadir a lista blanca
-- **Investigación**: Marcar para análisis profundo
-- **Reporte externo**: Enviar a servicios de inteligencia
-
 ## :gear: Funciones Administrativas
 
 ### Gestión en Lote
 
-![Placeholder: Acciones en lote para IPs](assets/bulk-ip-actions.png)
+![Placeholder: Acciones en lote para IPs](../assets/bulk-ip-actions.png)
 
 #### Operaciones Disponibles
 
 === "Selección Múltiple"
     - **Checkboxes** individuales por IP
     - **Seleccionar todo** en página actual
-    - **Selección por criterios** (país, nivel, etc.)
 
 === "Acciones en Lote"
     - **Desbloqueo masivo** de IPs seleccionadas
-    - **Exportación** de datos seleccionados
-    - **Cambio de nivel** de amenaza
-    - **Añadir a listas** (blanca/negra)
 
 #### Consideraciones de Seguridad
 - **Confirmación obligatoria** para acciones masivas
@@ -301,9 +213,6 @@ Ejemplos de búsqueda:
 
 **Duración Automática:**
 - **Primera ofensa**: 10 minutos
-- **Reincidencia**: 1 hora exponencial
-- **Amenaza alta**: 24 horas mínimo
-- **Crítica**: Bloqueo permanente
 
 **Umbrales de Detección:**
 - **Intentos fallidos**: 3-5 según servicio
@@ -327,14 +236,6 @@ Ejemplos de búsqueda:
 - **Toast notifications** para IPs críticas
 - **Contador en tiempo real** de estadísticas
 - **Indicador visual** de actividad reciente
-
-#### Configuración de Alertas
-
-**Umbrales Personalizables:**
-- **Número de IPs** bloqueadas por hora
-- **Países nuevos** detectados
-- **Niveles de amenaza** específicos
-- **Servicios atacados** críticos
 
 ### Panel de Actividad
 

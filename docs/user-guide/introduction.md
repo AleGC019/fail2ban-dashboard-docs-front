@@ -71,11 +71,6 @@ graph TD
 
 ## :art: Interfaz de Usuario
 
-### Tema Oscuro/Claro
-Secure Dash incluye soporte para temas oscuro y claro, adaptándose a tus preferencias.
-
-![Placeholder: Comparación de tema claro vs oscuro](assets/themes-comparison.png)
-
 ### Diseño Responsivo
 La interfaz se adapta perfectamente a:
 - **Escritorio** (1920x1080 y superiores)

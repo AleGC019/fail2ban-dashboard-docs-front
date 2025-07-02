@@ -8,7 +8,7 @@ Aprende a navegar eficientemente por todas las secciones de Secure Dash y aprove
 
 Secure Dash utiliza un diseño moderno de sidebar que se adapta a diferentes tamaños de pantalla:
 
-![Placeholder: Layout general de la aplicación](assets/main-layout.png)
+![Placeholder: Layout general de la aplicación](../assets/user-menu.png)
 
 #### Componentes Principales
 
@@ -21,7 +21,7 @@ Secure Dash utiliza un diseño moderno de sidebar que se adapta a diferentes tam
 
 ### Estructura del Sidebar
 
-![Placeholder: Sidebar completo](assets/sidebar-full.png)
+![Placeholder: Sidebar completo](../assets/sidebar-search.png)
 
 #### Secciones del Menú
 
@@ -49,7 +49,7 @@ Secure Dash utiliza un diseño moderno de sidebar que se adapta a diferentes tam
 - Atajo de teclado: presiona `/`
 - Busca en contenido y navegación
 
-![Placeholder: Función de búsqueda en sidebar](assets/sidebar-search.png)
+![Placeholder: Función de búsqueda en sidebar](../assets/sidebar-search.png)
 
 ### Estados Visuales
 
@@ -69,7 +69,7 @@ Los elementos del menú muestran diferentes estados:
 
 ### Elementos del Header
 
-![Placeholder: Header con todos los elementos](assets/header-complete.png)
+![Placeholder: Header con todos los elementos](../assets/header-complete.png)
 
 #### Componentes Principales
 
@@ -98,7 +98,7 @@ Los breadcrumbs se actualizan automáticamente según tu ubicación:
 | `/app/banned-ips` | :shield: → Lista De Ips |
 | `/app/users` | :shield: → Gestión De Usuarios |
 
-## :iphone: Navegación Responsiva
+## :telephone_receiver: Navegación Responsiva
 
 ### Dispositivos Móviles
 
@@ -108,8 +108,6 @@ En pantallas pequeñas (< 768px):
 - **Botón hamburguesa** en el header
 - **Navegación táctil** optimizada
 - **Contenido adaptado** al espacio disponible
-
-![Placeholder: Vista móvil con menú colapsado](assets/mobile-navigation.png)
 
 ### Tablets
 
@@ -154,13 +152,6 @@ En pantallas grandes (> 1024px):
 
 ### Preferencias de Interfaz
 
-#### Tema de Colores
-- **Botón de tema** en esquina superior derecha
-- Alterna entre claro y oscuro
-- Preferencia guardada automáticamente
-
-![Placeholder: Selector de tema](assets/theme-selector.png)
-
 #### Tamaño de Sidebar
 - **Auto-colapso** en pantallas pequeñas
 - **Expansión manual** disponible
@@ -182,13 +173,6 @@ Para todas las tablas del sistema:
 - Haz clic en el campo de búsqueda del sidebar
 - Presiona `/` desde cualquier página
 - Comienza a escribir inmediatamente
-
-#### Capacidades
-- **Búsqueda en tiempo real** mientras escribes
-- **Resultados contextuales** por sección
-- **Navegación directa** a resultados
-
-![Placeholder: Resultados de búsqueda](assets/search-results.png)
 
 ### Búsquedas Específicas
 
@@ -241,7 +225,7 @@ La aplicación muestra indicadores visuales para:
 - **Animaciones sutiles** durante actualización
 - **Feedback inmediato** al usuario
 
-![Placeholder: Indicadores de estado de conexión](assets/connection-status.png)
+![Placeholder: Indicadores de estado de conexión](../assets/connection-status.png)
 
 ## :bulb: Mejores Prácticas
 
@@ -270,6 +254,3 @@ La aplicación muestra indicadores visuales para:
 | Navegación lenta | Verifica conexión a internet |
 | Enlaces no funcionan | Limpia caché del navegador |
 | Breadcrumbs incorrectos | Navega usando el menú principal |
-
-!!! warning "Nota Importante"
-    Si experimentas problemas persistentes de navegación, contacta al administrador del sistema o revisa la [sección de solución de problemas](troubleshooting.md).

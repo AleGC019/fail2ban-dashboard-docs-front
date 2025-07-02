@@ -6,7 +6,7 @@ La sección de logs es fundamental para monitorear la actividad de seguridad en 
 
 ### Pantalla Principal
 
-![Placeholder: Vista completa de la gestión de logs](assets/logs-management-full.png)
+![Placeholder: Vista completa de la gestión de logs](../assets/logs-management-full.png)
 
 La sección de logs está dividida en:
 
@@ -15,43 +15,11 @@ La sección de logs está dividida en:
 3. **Tabla de Logs** - Visualización detallada de eventos
 4. **Panel de Detalles** - Información específica de eventos
 
-## :1234: Estadísticas de Logs
-
-### Métricas Principales
-
-![Placeholder: Tarjetas de estadísticas de logs](assets/logs-stats-cards.png)
-
-#### Indicadores Clave
-
-| Métrica | Descripción | Interpretación |
-|---------|-------------|----------------|
-| **Total IPs** | IPs únicas registradas | Mayor diversidad = más actividad |
-| **Total Logs** | Eventos totales del sistema | Volumen general de actividad |
-| **Logs Info** | Eventos informativos | Actividad normal del sistema |
-| **Logs Alerta** | Eventos críticos | Amenazas detectadas |
-
-#### Códigos de Color
-
-=== "Verde"
-    - **Actividad normal** del sistema
-    - **Valores esperados** según histórico
-    - **Sin amenazas críticas**
-
-=== "Amarillo"
-    - **Incremento moderado** en actividad
-    - **Requiere monitoreo** adicional
-    - **Posibles patrones** emergentes
-
-=== "Rojo"
-    - **Actividad anómala** detectada
-    - **Múltiples amenazas** activas
-    - **Requiere acción inmediata**
-
 ## :mag: Búsqueda y Filtros
 
 ### Barra de Búsqueda
 
-![Placeholder: Barra de búsqueda de logs](assets/logs-search-bar.png)
+![Placeholder: Barra de búsqueda de logs](../assets/logs-search-bar.png)
 
 #### Búsqueda por Mensaje
 - **Búsqueda en tiempo real** mientras escribes
@@ -69,7 +37,7 @@ Ejemplos de búsqueda:
 
 #### Filtro por Nivel de Log
 
-![Placeholder: Filtro de nivel de log](assets/log-level-filter.png)
+![Placeholder: Filtro de nivel de log](../assets/log-level-filter.png)
 
 === "INFO"
     - **Color**: Azul
@@ -88,19 +56,16 @@ Ejemplos de búsqueda:
 
 #### Filtro por Fecha y Hora
 
-![Placeholder: Selector de fechas](assets/date-time-filter.png)
+![Placeholder: Selector de fechas](../assets/date-time-filter.png)
 
 **Opciones Disponibles:**
 - **Fecha específica** usando calendario
 - **Rango de fechas** para análisis histórico
-- **Filtros rápidos**: Última hora, último día, última semana
-- **Hora específica** para análisis granular
 
 ### Aplicación de Filtros
 
 #### Uso Combinado
 - **Múltiples filtros** se pueden aplicar simultáneamente
-- **Filtrado incremental** para refinar resultados
 - **Reset rápido** para limpiar todos los filtros
 
 #### Persistencia
@@ -112,7 +77,7 @@ Ejemplos de búsqueda:
 
 ### Estructura de la Tabla
 
-![Placeholder: Tabla completa de logs](assets/logs-table-complete.png)
+![Placeholder: Tabla completa de logs](../assets/logs-table-complete.png)
 
 #### Columnas Disponibles
 
@@ -156,7 +121,7 @@ Ejemplos de búsqueda:
 
 ### Hoja de Detalles Lateral
 
-![Placeholder: Panel de detalles de log](assets/log-details-panel.png)
+![Placeholder: Panel de detalles de log](../assets/log-details-panel.png)
 
 #### Información Completa
 
@@ -205,31 +170,21 @@ Ejemplos de búsqueda:
 
 ### Acciones en Lote
 
-![Placeholder: Barra de acciones en lote](assets/logs-bulk-actions.png)
+![Placeholder: Barra de acciones en lote](../assets/logs-bulk-actions.png)
 
 #### Operaciones Disponibles
 
 === "Exportación"
     - **Formato CSV** para análisis externo
-    - **Formato JSON** para integración técnica
     - **Filtros aplicados** incluidos en exportación
-
-=== "Análisis"
-    - **Generación de reportes** automática
-    - **Detección de patrones** con IA
-    - **Recomendaciones** de seguridad
 
 #### Configuración de Exportación
 
 **Opciones de Formato:**
 - **CSV**: Ideal para Excel y análisis de datos
-- **JSON**: Perfecto para integración con APIs
-- **PDF**: Para reportes ejecutivos
 
 **Personalización:**
-- **Columnas seleccionables** para incluir
 - **Rango de fechas** específico
-- **Nivel de detalle** configurable
 
 ### Funciones Administrativas
 
@@ -243,7 +198,6 @@ Ejemplos de búsqueda:
 === "Integración"
     - **API endpoints** para logs
     - **Webhooks** para notificaciones
-    - **SIEM integration** para sistemas externos
 
 ## :arrows_clockwise: Actualización en Tiempo Real
 
@@ -254,10 +208,10 @@ Ejemplos de búsqueda:
 - **Notificación visual** para nuevos logs críticos
 - **Scroll automático** opcional a eventos recientes
 
-![Placeholder: Indicador de logs en tiempo real](assets/real-time-logs.png)
+![Placeholder: Indicador de logs en tiempo real](../assets/connection-status.png)
 
 #### Gestión de Volumen
-- **Límite de 1000 logs** visibles simultáneamente
+- **Límite de 10 logs** visibles simultáneamente
 - **Paginación automática** para volumen alto
 - **Agregación inteligente** de eventos similares
 
@@ -267,43 +221,6 @@ Ejemplos de búsqueda:
 - **Toast notifications** para eventos ERROR
 - **Sonido opcional** para alertas críticas
 - **Persistencia** hasta reconocimiento
-
-#### Configuración
-- **Umbral personalizable** para notificaciones
-- **Filtros de ruido** para eventos repetitivos
-- **Horarios de silencio** disponibles
-
-## :chart_with_upwards_trend: Análisis de Patrones
-
-### Detección Automática
-
-#### Patrones Comunes Identificados
-
-| Patrón | Descripción | Acción Sugerida |
-|--------|-------------|-----------------|
-| **Brute Force** | Múltiples intentos fallidos | Bloqueo automático IP |
-| **Port Scanning** | Acceso a múltiples puertos | Investigación adicional |
-| **SQL Injection** | Patrones de inyección SQL | Alerta inmediata |
-| **DDoS** | Volumen anormal de requests | Activar protecciones |
-
-#### Métricas de Análisis
-- **Frecuencia de eventos** por IP
-- **Distribución temporal** de ataques
-- **Geolocalización** de amenazas
-- **Vectores de ataque** más comunes
-
-### Reportes Automáticos
-
-#### Generación Programada
-- **Reportes diarios** de actividad
-- **Resúmenes semanales** de seguridad
-- **Alertas mensuales** de tendencias
-
-#### Contenido de Reportes
-- **Top 10 IPs** más problemáticas
-- **Eventos críticos** del período
-- **Recomendaciones** de mejora
-- **Comparativas** con períodos anteriores
 
 ## :bulb: Mejores Prácticas
 

@@ -214,8 +214,7 @@ User-Agent: YourApp/1.0
 Si encuentras problemas con la API:
 
 1. **Verifica el status**: `GET /health`
-2. **Consulta los logs**: Documentación de [troubleshooting](../deployment/troubleshooting.md)
-3. **Revisa ejemplos**: En la documentación interactiva
+2. **Revisa ejemplos**: En la documentación interactiva
 4. **Contacta soporte**: Issues en el repositorio de GitHub
 
 !!! tip "Mejores Prácticas"

@@ -1,4 +1,4 @@
- # Gestión de Usuarios
+# Gestión de Usuarios
 
 La sección de gestión de usuarios permite a los administradores controlar el acceso al sistema, asignar roles y gestionar permisos de manera granular.
 
@@ -9,7 +9,7 @@ La sección de gestión de usuarios permite a los administradores controlar el a
 
 ### Pantalla Principal
 
-![Placeholder: Vista completa de gestión de usuarios](assets/users-management-overview.png)
+![Placeholder: Vista completa de gestión de usuarios](../assets/users-management-overview.png)
 
 La gestión de usuarios incluye:
 
@@ -22,7 +22,7 @@ La gestión de usuarios incluye:
 
 ### Métricas de Usuarios
 
-![Placeholder: Estadísticas de usuarios del sistema](assets/users-stats.png)
+![Placeholder: Estadísticas de usuarios del sistema](../assets/users-stats.png)
 
 #### Indicadores Principales
 
@@ -33,25 +33,6 @@ La gestión de usuarios incluye:
 | **Usuarios Regulares** | Cuentas con permisos básicos | Base de usuarios estándar |
 | **Usuarios Activos (30d)** | Actividad reciente | Engagement de la plataforma |
 
-#### Análisis de Roles
-
-=== "Distribución Saludable"
-    - **Administradores**: 10-20% del total
-    - **Usuarios regulares**: 80-90% del total
-    - **Proporción adecuada** según tamaño de organización
-
-=== "Señales de Alerta"
-    - **Demasiados administradores**: Riesgo de seguridad
-    - **Muy pocos administradores**: Riesgo operacional
-    - **Usuarios inactivos altos**: Limpieza necesaria
-
-### Tendencias de Acceso
-
-#### Métricas de Actividad
-- **Logins diarios** promedio
-- **Tiempo de sesión** medio
-- **Funciones más utilizadas** por rol
-- **Horarios pico** de actividad
 
 ## :hammer_and_wrench: Gestión de Cuentas
 
@@ -92,11 +73,11 @@ La gestión de usuarios incluye:
 3. **Configuración avanzada** de permisos
 4. **Notificación automática** al nuevo usuario
 
-## :table: Tabla de Usuarios
+## Tabla de Usuarios
 
 ### Estructura de Datos
 
-![Placeholder: Tabla completa de usuarios](assets/users-table-complete.png)
+![Placeholder: Tabla completa de usuarios](../assets/users-management-overview.png)
 
 #### Columnas Principales
 
@@ -106,32 +87,13 @@ La gestión de usuarios incluye:
 | **Email** | Dirección de correo | Contacto y autenticación |
 | **Roles** | Permisos asignados | Badges con códigos de color |
 | **Status** | Estado de la cuenta | Activo/Inactivo |
-| **Created At** | Fecha de creación | Información histórica |
-| **Actions** | Acciones disponibles | Editar, eliminar, detalles |
-
-#### Estados de Cuenta
-
-=== "Activo"
-    - **Color**: Verde
-    - **Descripción**: Usuario puede acceder normalmente
-    - **Funcionalidad**: Todas las funciones habilitadas
-
-=== "Inactivo"
-    - **Color**: Gris
-    - **Descripción**: Cuenta suspendida temporalmente
-    - **Funcionalidad**: Acceso bloqueado
-
-=== "Pendiente"
-    - **Color**: Amarillo
-    - **Descripción**: Cuenta creada pero no verificada
-    - **Funcionalidad**: Acceso limitado hasta verificación
 
 ### Badges de Roles
 
 #### Visualización de Permisos
 
 **Usuario Regular:**
-- **Badge azul** con texto "Usuario"
+- **Badge verde** con texto "Usuario"
 - **Icono**: Usuario simple
 - **Tooltip**: "Permisos básicos del sistema"
 
@@ -140,20 +102,17 @@ La gestión de usuarios incluye:
 - **Icono**: Escudo con corona
 - **Tooltip**: "Acceso completo al sistema"
 
-![Placeholder: Badges de roles de usuario](assets/user-role-badges.png)
-
 ## :pencil2: Edición de Usuarios
 
 ### Panel de Edición Lateral
 
-![Placeholder: Panel de edición de usuario](assets/user-edit-panel.png)
+![Placeholder: Panel de edición de usuario](../assets/user-edit-panel.png)
 
 #### Información Editable
 
 **Datos Básicos:**
 - **Nombre de usuario**: Único en el sistema
 - **Email**: Verificación automática de formato
-- **Estado**: Activo/Inactivo toggle
 
 **Gestión de Roles:**
 - **Selector múltiple** de roles disponibles
@@ -196,29 +155,6 @@ La gestión de usuarios incluye:
 - **Eliminación** de usuarios con actividad reciente
 - **Cambios masivos** de permisos
 
-## :gear: Funciones Administrativas
-
-### Acciones en Lote
-
-![Placeholder: Acciones en lote para usuarios](assets/users-bulk-actions.png)
-
-#### Operaciones Disponibles
-
-=== "Gestión de Estado"
-    - **Activar múltiples** usuarios inactivos
-    - **Desactivar** usuarios seleccionados
-    - **Verificar** cuentas pendientes
-
-=== "Gestión de Roles"
-    - **Asignar rol** a múltiples usuarios
-    - **Remover permisos** específicos
-    - **Estandarizar roles** por departamento
-
-=== "Mantenimiento"
-    - **Exportar datos** de usuarios seleccionados
-    - **Enviar notificaciones** masivas
-    - **Eliminar cuentas** obsoletas
-
 #### Limitaciones de Seguridad
 
 **Restricciones de Protección:**
@@ -248,99 +184,13 @@ La gestión de usuarios incluye:
 
 ## :eye: Panel de Detalles de Usuario
 
-### Información Completa
-
-![Placeholder: Panel de detalles completo de usuario](assets/user-details-complete.png)
-
-#### Información Personal
-
-**Datos de Cuenta:**
-- **ID único**: Identificador interno del sistema
-- **Username**: Nombre de usuario
-- **Email**: Dirección de contacto
-- **Estado**: Activo/Inactivo con timestamp
-
-**Metadatos del Sistema:**
-- **Fecha de creación**: Cuándo se registró
-- **Última actividad**: Último login exitoso
-- **Total sesiones**: Número de logins históricos
-- **IP más frecuente**: Dirección de acceso común
-
-#### Historial de Actividad
-
-**Registro de Accesos:**
-- **Logins exitosos**: Fechas y horas
-- **Intentos fallidos**: Alertas de seguridad
-- **Cambios de perfil**: Modificaciones de datos
-- **Acciones realizadas**: Log de actividades importantes
-
-**Análisis de Comportamiento:**
-- **Horarios preferidos**: Patrones de uso
-- **Secciones más usadas**: Preferencias del usuario
-- **Tiempo promedio**: Duración de sesiones
-- **Dispositivos utilizados**: Desktop/móvil
-
-#### Configuración Técnica
-
-=== "Sesiones Activas"
-    - **Lista de dispositivos** conectados
-    - **IP de cada sesión**
-    - **Tiempo de actividad** de cada sesión
-    - **Forzar logout** remoto disponible
-
-=== "Configuración de Seguridad"
-    - **Último cambio** de contraseña
-    - **Intentos fallidos** recientes
-    - **Alertas de seguridad** configuradas
-    - **Verificación 2FA** (cuando esté disponible)
-
-=== "Preferencias de Usuario"
-    - **Tema preferido**: Claro/oscuro
-    - **Idioma**: Español (por defecto)
-    - **Notificaciones**: Push/email habilitadas
-    - **Configuración de tabla**: Filas por página
 
 ### Acciones Administrativas
 
 #### Herramientas de Gestión
 
 **Gestión de Cuenta:**
-- **Resetear contraseña**: Generar nueva temporal
-- **Forzar logout**: Cerrar todas las sesiones
-- **Suspender cuenta**: Desactivación temporal
 - **Eliminar usuario**: Eliminación completa
-
-**Gestión de Datos:**
-- **Exportar actividad**: Download de logs del usuario
-- **Limpiar sesiones**: Eliminar sesiones vencidas
-- **Backup perfil**: Exportar configuración
-
-**Comunicación:**
-- **Enviar notificación**: Mensaje directo al usuario
-- **Enviar email**: Comunicación formal
-- **Programar recordatorio**: Alertas futuras
-
-## :shield: Seguridad y Auditoría
-
-### Log de Auditoría
-
-#### Eventos Registrados
-
-| Evento | Información Registrada | Retención |
-|--------|------------------------|-----------|
-| **Creación de usuario** | Admin, timestamp, datos iniciales | Permanente |
-| **Cambio de roles** | Roles anteriores/nuevos, justificación | Permanente |
-| **Modificación de datos** | Campos cambiados, valores anteriores | 1 año |
-| **Eliminación** | Datos del usuario, razón, admin responsable | Permanente |
-| **Accesos** | IP, timestamp, éxito/fallo | 90 días |
-
-#### Informes de Auditoría
-
-**Reportes Automáticos:**
-- **Diario**: Cambios de roles y nuevos usuarios
-- **Semanal**: Análisis de actividad y patrones
-- **Mensual**: Revisión completa de permisos
-- **Anual**: Auditoría de seguridad completa
 
 ### Políticas de Seguridad
 
@@ -360,15 +210,6 @@ La gestión de usuarios incluye:
 - **Acceso desde IP nueva**: Verificación adicional
 - **Cambios fuera de horario**: Actividad sospechosa
 
-## :bulb: Mejores Prácticas
-
-### Administración Efectiva
-
-!!! tip "Gestión Recomendada"
-    - **Revisa usuarios** semanalmente para inactividad
-    - **Actualiza roles** según cambios organizacionales
-    - **Documenta cambios** críticos de permisos
-    - **Mantén respaldos** de configuraciones de usuario
 
 ### Principios de Seguridad
 

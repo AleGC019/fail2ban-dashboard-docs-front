@@ -6,7 +6,7 @@ El Dashboard es el centro de control de Secure Dash, proporcionando una visión 
 
 ### Pantalla Principal
 
-![Placeholder: Vista completa del dashboard](assets/dashboard-full-view.png)
+![Placeholder: Vista completa del dashboard](../assets/user-menu.png)
 
 El Dashboard está organizado en tres secciones principales:
 
@@ -18,7 +18,7 @@ El Dashboard está organizado en tres secciones principales:
 
 ### Tarjetas de Estadísticas
 
-![Placeholder: Tarjetas de métricas principales](assets/dashboard-metrics.png)
+![Placeholder: Tarjetas de métricas principales](../assets/dashboard-metrics.png)
 
 #### Métricas Disponibles
 
@@ -55,7 +55,7 @@ El Dashboard está organizado en tres secciones principales:
 
 ### Gráfico de Tendencias de Actividad
 
-![Placeholder: Gráfico de tendencias en tiempo real](assets/activity-trend-chart.png)
+![Placeholder: Gráfico de tendencias en tiempo real](../assets/dashboard-metrics.png)
 
 #### Características
 - **Datos en tiempo real** con punto verde indicador
@@ -70,7 +70,7 @@ El Dashboard está organizado en tres secciones principales:
 
 ### Gráfico de Bans vs Unbans
 
-![Placeholder: Gráfico de bans vs unbans](assets/ban-unban-chart.png)
+![Placeholder: Gráfico de bans vs unbans](../assets/ban-unban-chart.png)
 
 #### Elementos del Gráfico
 - **Línea azul**: Tasa de bloqueos (Ban Rate)
@@ -83,28 +83,9 @@ El Dashboard está organizado en tres secciones principales:
 - **Picos de bans**: Posibles ataques detectados
 - **Unbans frecuentes**: IPs legítimas siendo desbloqueadas
 
-### KPI de Tiempo de Detección
-
-![Placeholder: KPI de tiempo promedio de detección](assets/avg-detection-kpi.png)
-
-#### Niveles de Rendimiento
-
-| Tiempo | Estado | Color | Descripción |
-|--------|--------|-------|-------------|
-| ≤ 2s | Excelente | Verde | Respuesta muy rápida |
-| 2-4s | Bueno | Amarillo | Respuesta normal |
-| > 4s | Lento | Rojo | Requiere optimización |
-
-#### Indicadores Visuales
-- **Animación de cambio** cuando el valor se actualiza
-- **Flecha direccional** indica mejora o deterioro
-- **Color dinámico** basado en el rendimiento
-
-## :shield: Top 5 IPs Bloqueadas
-
 ### Tabla de IPs Problemáticas
 
-![Placeholder: Tabla de top 5 IPs bloqueadas](assets/top-ips-table.png)
+![Placeholder: Tabla de top 5 IPs bloqueadas](../assets/top-ips-table.png)
 
 #### Información Mostrada
 
@@ -141,7 +122,7 @@ El Dashboard está organizado en tres secciones principales:
 
 ### Alertas en Tiempo Real
 
-![Placeholder: Notificaciones de alerta](assets/security-alerts.png)
+![Placeholder: Notificaciones de alerta](../assets/connection-status.png)
 
 #### Tipos de Alertas
 
@@ -205,18 +186,6 @@ El Dashboard está organizado en tres secciones principales:
 
 ## :gear: Personalización del Dashboard
 
-### Preferencias de Usuario
-
-#### Configuraciones Disponibles
-- **Tema claro/oscuro** - Botón en header
-- **Frecuencia de alertas** - Configuración automática
-- **Tamaño de gráficos** - Responsivo automático
-
-#### Configuraciones Persistentes
-- **Preferencias guardadas** en el navegador
-- **Estado mantenido** entre sesiones
-- **Sincronización** entre pestañas
-
 ### Optimización para Dispositivos
 
 #### Escritorio (> 1024px)
@@ -233,8 +202,6 @@ El Dashboard está organizado en tres secciones principales:
 - **Vista optimizada** para pantallas pequeñas
 - **Navegación simplificada**
 - **Elementos esenciales** priorizados
-
-![Placeholder: Vistas responsivas del dashboard](assets/dashboard-responsive.png)
 
 ## :bulb: Consejos de Uso
 
