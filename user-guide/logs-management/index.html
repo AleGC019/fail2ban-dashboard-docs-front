@@ -1,0 +1,2272 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación completa del sistema de monitoreo Fail2ban">
+      
+      
+        <meta name="author" content="Alejandro Gómez">
+      
+      
+        <link rel="canonical" href="https://github.com/AleGC019/fail2ban-dashboard-docs-front.git/user-guide/logs-management/">
+      
+      
+        <link rel="prev" href="../dashboard/">
+      
+      
+        <link rel="next" href="../banned-ips/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Gestión de Logs - Fail2ban Dashboard - Documentación Técnica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gestion-de-logs-de-fail2ban" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Fail2ban Dashboard - Documentación Técnica" class="md-header__button md-logo" aria-label="Fail2ban Dashboard - Documentación Técnica" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Fail2ban Dashboard - Documentación Técnica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gestión de Logs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartir" aria-label="Compartir" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../introduction/" class="md-tabs__link">
+          
+  
+  
+  Manual de Usuario
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/reference/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arquitectura/overview/" class="md-tabs__link">
+          
+  
+  
+  Arquitectura del Sistema
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Fail2ban Dashboard - Documentación Técnica" class="md-nav__button md-logo" aria-label="Fail2ban Dashboard - Documentación Técnica" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Fail2ban Dashboard - Documentación Técnica
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Manual de Usuario
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Manual de Usuario
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Primeros Pasos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Navegación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dashboard Principal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Gestión de Logs
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestión de Logs
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vista-general-de-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vista General de Logs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vista General de Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pantalla-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pantalla Principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#busqueda-y-filtros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Búsqueda y Filtros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Búsqueda y Filtros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#barra-de-busqueda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Barra de Búsqueda
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Barra de Búsqueda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-por-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      Búsqueda por Mensaje
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtros-avanzados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtros Avanzados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtros Avanzados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtro-por-nivel-de-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtro por Nivel de Log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtro-por-fecha-y-hora" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtro por Fecha y Hora
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicacion-de-filtros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aplicación de Filtros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aplicación de Filtros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-combinado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso Combinado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-tabla-de-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      :table: Tabla de Logs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=":table: Tabla de Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-la-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura de la Tabla
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estructura de la Tabla">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#columnas-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Columnas Disponibles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionalidades-de-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades de Tabla
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualizacion-de-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualización de Logs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualización de Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formato-de-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formato de Timestamp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indicadores-visuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indicadores Visuales
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#panel-de-detalles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Panel de Detalles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Panel de Detalles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hoja-de-detalles-lateral" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hoja de Detalles Lateral
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hoja de Detalles Lateral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#informacion-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Información Completa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navegacion-en-detalles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navegación en Detalles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Navegación en Detalles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controles-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controles Disponibles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#informacion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Información Técnica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herramientas-de-gestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Herramientas de Gestión
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Herramientas de Gestión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acciones-en-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acciones en Lote
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Acciones en Lote">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operaciones-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operaciones Disponibles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-exportacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de Exportación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funciones-administrativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones Administrativas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funciones Administrativas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solo-para-administradores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solo para Administradores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actualizacion-en-tiempo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actualización en Tiempo Real
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actualización en Tiempo Real">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sistema-websocket" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sistema WebSocket
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sistema WebSocket">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs-en-vivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs en Vivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-volumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestión de Volumen
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notificaciones-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notificaciones Push
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notificaciones Push">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alertas-criticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alertas Críticas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mejores-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mejores Prácticas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mejores Prácticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitoreo-efectivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoreo Efectivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-incidentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análisis de Incidentes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizacion-de-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimización de Rendimiento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucion-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solución de Problemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solución de Problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problemas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problemas Comunes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../banned-ips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IPs Bloqueadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestión de Usuarios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Referencia de la API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Arquitectura del Sistema
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Arquitectura del Sistema
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitectura/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Descripción General
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vista-general-de-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vista General de Logs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vista General de Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pantalla-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pantalla Principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#busqueda-y-filtros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Búsqueda y Filtros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Búsqueda y Filtros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#barra-de-busqueda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Barra de Búsqueda
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Barra de Búsqueda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#busqueda-por-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      Búsqueda por Mensaje
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtros-avanzados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtros Avanzados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtros Avanzados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtro-por-nivel-de-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtro por Nivel de Log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtro-por-fecha-y-hora" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtro por Fecha y Hora
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicacion-de-filtros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aplicación de Filtros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aplicación de Filtros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-combinado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso Combinado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-tabla-de-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      :table: Tabla de Logs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=":table: Tabla de Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-la-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura de la Tabla
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estructura de la Tabla">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#columnas-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Columnas Disponibles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionalidades-de-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades de Tabla
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualizacion-de-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualización de Logs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualización de Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formato-de-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formato de Timestamp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indicadores-visuales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indicadores Visuales
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#panel-de-detalles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Panel de Detalles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Panel de Detalles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hoja-de-detalles-lateral" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hoja de Detalles Lateral
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hoja de Detalles Lateral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#informacion-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Información Completa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navegacion-en-detalles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navegación en Detalles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Navegación en Detalles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controles-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controles Disponibles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#informacion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Información Técnica
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herramientas-de-gestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Herramientas de Gestión
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Herramientas de Gestión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acciones-en-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acciones en Lote
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Acciones en Lote">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operaciones-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operaciones Disponibles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-exportacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de Exportación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funciones-administrativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones Administrativas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funciones Administrativas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solo-para-administradores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solo para Administradores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actualizacion-en-tiempo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actualización en Tiempo Real
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actualización en Tiempo Real">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sistema-websocket" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sistema WebSocket
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sistema WebSocket">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs-en-vivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs en Vivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-volumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestión de Volumen
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notificaciones-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notificaciones Push
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notificaciones Push">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alertas-criticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alertas Críticas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mejores-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mejores Prácticas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mejores Prácticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitoreo-efectivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoreo Efectivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis-de-incidentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análisis de Incidentes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizacion-de-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimización de Rendimiento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucion-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solución de Problemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solución de Problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problemas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problemas Comunes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gestion-de-logs-de-fail2ban">Gestión de Logs de Fail2Ban<a class="headerlink" href="#gestion-de-logs-de-fail2ban" title="Permanent link">#</a></h1>
+<p>La sección de logs es fundamental para monitorear la actividad de seguridad en tiempo real y analizar patrones de ataques.</p>
+<h2 id="vista-general-de-logs"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4c4.svg" title=":page_facing_up:" /> Vista General de Logs<a class="headerlink" href="#vista-general-de-logs" title="Permanent link">#</a></h2>
+<h3 id="pantalla-principal">Pantalla Principal<a class="headerlink" href="#pantalla-principal" title="Permanent link">#</a></h3>
+<p><img alt="Placeholder: Vista completa de la gestión de logs" src="../../assets/logs-management-full.png" /></p>
+<p>La sección de logs está dividida en:</p>
+<ol>
+<li><strong>Estadísticas Generales</strong> - Métricas rápidas del sistema</li>
+<li><strong>Herramientas de Filtrado</strong> - Búsqueda y filtros avanzados</li>
+<li><strong>Tabla de Logs</strong> - Visualización detallada de eventos</li>
+<li><strong>Panel de Detalles</strong> - Información específica de eventos</li>
+</ol>
+<h2 id="busqueda-y-filtros"><img alt="🔍" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f50d.svg" title=":mag:" /> Búsqueda y Filtros<a class="headerlink" href="#busqueda-y-filtros" title="Permanent link">#</a></h2>
+<h3 id="barra-de-busqueda">Barra de Búsqueda<a class="headerlink" href="#barra-de-busqueda" title="Permanent link">#</a></h3>
+<p><img alt="Placeholder: Barra de búsqueda de logs" src="../../assets/logs-search-bar.png" /></p>
+<h4 id="busqueda-por-mensaje">Búsqueda por Mensaje<a class="headerlink" href="#busqueda-por-mensaje" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Búsqueda en tiempo real</strong> mientras escribes</li>
+<li><strong>Coincidencias parciales</strong> en el contenido del log</li>
+<li><strong>Resaltado automático</strong> de términos encontrados</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Ejemplos de búsqueda:
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>• &quot;Failed password&quot; - Busca intentos de login fallidos
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>• &quot;Invalid user&quot; - Encuentra usuarios inexistentes
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>• &quot;Connection refused&quot; - Localiza conexiones rechazadas
+</span></code></pre></div>
+<h3 id="filtros-avanzados">Filtros Avanzados<a class="headerlink" href="#filtros-avanzados" title="Permanent link">#</a></h3>
+<h4 id="filtro-por-nivel-de-log">Filtro por Nivel de Log<a class="headerlink" href="#filtro-por-nivel-de-log" title="Permanent link">#</a></h4>
+<p><img alt="Placeholder: Filtro de nivel de log" src="../../assets/log-level-filter.png" /></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">INFO</label><label for="__tabbed_1_2">WARNING</label><label for="__tabbed_1_3">ERROR</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>Color</strong>: Azul</li>
+<li><strong>Descripción</strong>: Información general del sistema</li>
+<li><strong>Ejemplos</strong>: Conexiones exitosas, estadísticas</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Color</strong>: Amarillo</li>
+<li><strong>Descripción</strong>: Advertencias que requieren atención</li>
+<li><strong>Ejemplos</strong>: Intentos de acceso sospechosos</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Color</strong>: Rojo</li>
+<li><strong>Descripción</strong>: Errores críticos del sistema</li>
+<li><strong>Ejemplos</strong>: Fallos de autenticación, ataques detectados</li>
+</ul>
+</div>
+</div>
+</div>
+<h4 id="filtro-por-fecha-y-hora">Filtro por Fecha y Hora<a class="headerlink" href="#filtro-por-fecha-y-hora" title="Permanent link">#</a></h4>
+<p><img alt="Placeholder: Selector de fechas" src="../../assets/date-time-filter.png" /></p>
+<p><strong>Opciones Disponibles:</strong>
+- <strong>Fecha específica</strong> usando calendario
+- <strong>Rango de fechas</strong> para análisis histórico</p>
+<h3 id="aplicacion-de-filtros">Aplicación de Filtros<a class="headerlink" href="#aplicacion-de-filtros" title="Permanent link">#</a></h3>
+<h4 id="uso-combinado">Uso Combinado<a class="headerlink" href="#uso-combinado" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Múltiples filtros</strong> se pueden aplicar simultáneamente</li>
+<li><strong>Reset rápido</strong> para limpiar todos los filtros</li>
+</ul>
+<h4 id="persistencia">Persistencia<a class="headerlink" href="#persistencia" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Filtros mantenidos</strong> durante la sesión</li>
+<li><strong>URL actualizada</strong> para compartir búsquedas</li>
+<li><strong>Historial de filtros</strong> en navegador</li>
+</ul>
+<h2 id="table-tabla-de-logs">:table: Tabla de Logs<a class="headerlink" href="#table-tabla-de-logs" title="Permanent link">#</a></h2>
+<h3 id="estructura-de-la-tabla">Estructura de la Tabla<a class="headerlink" href="#estructura-de-la-tabla" title="Permanent link">#</a></h3>
+<p><img alt="Placeholder: Tabla completa de logs" src="../../assets/logs-table-complete.png" /></p>
+<h4 id="columnas-disponibles">Columnas Disponibles<a class="headerlink" href="#columnas-disponibles" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Columna</th>
+<th>Descripción</th>
+<th>Características</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Timestamp</strong></td>
+<td>Fecha y hora del evento</td>
+<td>Ordenable, formato local</td>
+</tr>
+<tr>
+<td><strong>Level</strong></td>
+<td>Nivel de severidad</td>
+<td>Badge con color</td>
+</tr>
+<tr>
+<td><strong>Message</strong></td>
+<td>Contenido del log</td>
+<td>Texto completo, buscable</td>
+</tr>
+<tr>
+<td><strong>Actions</strong></td>
+<td>Acciones disponibles</td>
+<td>Ver detalles, copiar</td>
+</tr>
+</tbody>
+</table>
+<h4 id="funcionalidades-de-tabla">Funcionalidades de Tabla<a class="headerlink" href="#funcionalidades-de-tabla" title="Permanent link">#</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Ordenación</label><label for="__tabbed_2_2">Paginación</label><label for="__tabbed_2_3">Selección</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>Clic en headers</strong> para ordenar columnas</li>
+<li><strong>Orden ascendente/descendente</strong> disponible</li>
+<li><strong>Ordenación múltiple</strong> manteniendo Shift</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>10, 25, 50</strong> logs por página</li>
+<li><strong>Navegación rápida</strong> entre páginas</li>
+<li><strong>Salto directo</strong> a página específica</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Checkbox individual</strong> por fila</li>
+<li><strong>Selección múltiple</strong> con Ctrl/Cmd</li>
+<li><strong>Seleccionar todo</strong> en página actual</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="visualizacion-de-logs">Visualización de Logs<a class="headerlink" href="#visualizacion-de-logs" title="Permanent link">#</a></h3>
+<h4 id="formato-de-timestamp">Formato de Timestamp<a class="headerlink" href="#formato-de-timestamp" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Formato local</strong> según configuración del navegador</li>
+<li><strong>Precisión de segundos</strong> para análisis detallado</li>
+<li><strong>Indicador relativo</strong> (hace 5 minutos)</li>
+</ul>
+<h4 id="indicadores-visuales">Indicadores Visuales<a class="headerlink" href="#indicadores-visuales" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Badges de nivel</strong> con códigos de color</li>
+<li><strong>Iconos contextuales</strong> según tipo de evento</li>
+<li><strong>Resaltado de texto</strong> para términos de búsqueda</li>
+</ul>
+<h2 id="panel-de-detalles"><img alt="👁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f441.svg" title=":eye:" /> Panel de Detalles<a class="headerlink" href="#panel-de-detalles" title="Permanent link">#</a></h2>
+<h3 id="hoja-de-detalles-lateral">Hoja de Detalles Lateral<a class="headerlink" href="#hoja-de-detalles-lateral" title="Permanent link">#</a></h3>
+<p><img alt="Placeholder: Panel de detalles de log" src="../../assets/log-details-panel.png" /></p>
+<h4 id="informacion-completa">Información Completa<a class="headerlink" href="#informacion-completa" title="Permanent link">#</a></h4>
+<p><strong>Metadatos del Evento:</strong>
+- <strong>ID único</strong> del log
+- <strong>Timestamp preciso</strong> con milisegundos
+- <strong>Nivel de severidad</strong> con descripción
+- <strong>Fuente</strong> del evento</p>
+<p><strong>Contenido del Log:</strong>
+- <strong>Mensaje completo</strong> sin truncar
+- <strong>Contexto adicional</strong> si está disponible
+- <strong>Información técnica</strong> relevante</p>
+<p><strong>Análisis Contextual:</strong>
+- <strong>Frecuencia</strong> de eventos similares
+- <strong>Patrones relacionados</strong> detectados
+- <strong>Recomendaciones</strong> de acción</p>
+<h3 id="navegacion-en-detalles">Navegación en Detalles<a class="headerlink" href="#navegacion-en-detalles" title="Permanent link">#</a></h3>
+<h4 id="controles-disponibles">Controles Disponibles<a class="headerlink" href="#controles-disponibles" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Cerrar panel</strong> con botón X o Escape</li>
+<li><strong>Copiar contenido</strong> al portapapeles</li>
+<li><strong>Navegación previa/siguiente</strong> entre logs</li>
+<li><strong>Enlace directo</strong> para compartir</li>
+</ul>
+<h4 id="informacion-tecnica">Información Técnica<a class="headerlink" href="#informacion-tecnica" title="Permanent link">#</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Detalles del Sistema</label><label for="__tabbed_3_2">Contexto de Seguridad</label><label for="__tabbed_3_3">Información de Red</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>Servidor de origen</strong></li>
+<li><strong>Proceso que generó el log</strong></li>
+<li><strong>Configuración aplicada</strong></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Tipo de amenaza</strong> detectada</li>
+<li><strong>Nivel de riesgo</strong> calculado</li>
+<li><strong>Acciones recomendadas</strong></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>IP de origen</strong> (cuando aplique)</li>
+<li><strong>Puerto utilizado</strong></li>
+<li><strong>Protocolo de conexión</strong></li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="herramientas-de-gestion"><img alt="⚙" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2699.svg" title=":gear:" /> Herramientas de Gestión<a class="headerlink" href="#herramientas-de-gestion" title="Permanent link">#</a></h2>
+<h3 id="acciones-en-lote">Acciones en Lote<a class="headerlink" href="#acciones-en-lote" title="Permanent link">#</a></h3>
+<p><img alt="Placeholder: Barra de acciones en lote" src="../../assets/logs-bulk-actions.png" /></p>
+<h4 id="operaciones-disponibles">Operaciones Disponibles<a class="headerlink" href="#operaciones-disponibles" title="Permanent link">#</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Exportación</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>Formato CSV</strong> para análisis externo</li>
+<li><strong>Filtros aplicados</strong> incluidos en exportación</li>
+</ul>
+</div>
+</div>
+</div>
+<h4 id="configuracion-de-exportacion">Configuración de Exportación<a class="headerlink" href="#configuracion-de-exportacion" title="Permanent link">#</a></h4>
+<p><strong>Opciones de Formato:</strong>
+- <strong>CSV</strong>: Ideal para Excel y análisis de datos</p>
+<p><strong>Personalización:</strong>
+- <strong>Rango de fechas</strong> específico</p>
+<h3 id="funciones-administrativas">Funciones Administrativas<a class="headerlink" href="#funciones-administrativas" title="Permanent link">#</a></h3>
+<h4 id="solo-para-administradores">Solo para Administradores<a class="headerlink" href="#solo-para-administradores" title="Permanent link">#</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Gestión Avanzada</label><label for="__tabbed_5_2">Integración</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>Purga de logs</strong> antiguos</li>
+<li><strong>Configuración de retención</strong></li>
+<li><strong>Optimización de rendimiento</strong></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>API endpoints</strong> para logs</li>
+<li><strong>Webhooks</strong> para notificaciones</li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="actualizacion-en-tiempo-real"><img alt="🔃" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f503.svg" title=":arrows_clockwise:" /> Actualización en Tiempo Real<a class="headerlink" href="#actualizacion-en-tiempo-real" title="Permanent link">#</a></h2>
+<h3 id="sistema-websocket">Sistema WebSocket<a class="headerlink" href="#sistema-websocket" title="Permanent link">#</a></h3>
+<h4 id="logs-en-vivo">Logs en Vivo<a class="headerlink" href="#logs-en-vivo" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Nuevos eventos</strong> aparecen automáticamente</li>
+<li><strong>Notificación visual</strong> para nuevos logs críticos</li>
+<li><strong>Scroll automático</strong> opcional a eventos recientes</li>
+</ul>
+<p><img alt="Placeholder: Indicador de logs en tiempo real" src="../../assets/connection-status.png" /></p>
+<h4 id="gestion-de-volumen">Gestión de Volumen<a class="headerlink" href="#gestion-de-volumen" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Límite de 10 logs</strong> visibles simultáneamente</li>
+<li><strong>Paginación automática</strong> para volumen alto</li>
+<li><strong>Agregación inteligente</strong> de eventos similares</li>
+</ul>
+<h3 id="notificaciones-push">Notificaciones Push<a class="headerlink" href="#notificaciones-push" title="Permanent link">#</a></h3>
+<h4 id="alertas-criticas">Alertas Críticas<a class="headerlink" href="#alertas-criticas" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Toast notifications</strong> para eventos ERROR</li>
+<li><strong>Sonido opcional</strong> para alertas críticas</li>
+<li><strong>Persistencia</strong> hasta reconocimiento</li>
+</ul>
+<h2 id="mejores-practicas"><img alt="💡" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4a1.svg" title=":bulb:" /> Mejores Prácticas<a class="headerlink" href="#mejores-practicas" title="Permanent link">#</a></h2>
+<h3 id="monitoreo-efectivo">Monitoreo Efectivo<a class="headerlink" href="#monitoreo-efectivo" title="Permanent link">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Consejos de Uso</p>
+<ul>
+<li><strong>Revisa logs críticos</strong> al menos cada hora</li>
+<li><strong>Establece filtros</strong> para tus casos de uso</li>
+<li><strong>Exporta datos</strong> regularmente para análisis offline</li>
+<li><strong>Mantén ventana abierta</strong> para alertas en tiempo real</li>
+</ul>
+</div>
+<h3 id="analisis-de-incidentes">Análisis de Incidentes<a class="headerlink" href="#analisis-de-incidentes" title="Permanent link">#</a></h3>
+<div class="admonition success">
+<p class="admonition-title">Flujo Recomendado</p>
+<ol>
+<li><strong>Identifica evento</strong> crítico en logs</li>
+<li><strong>Aplica filtros</strong> para contexto temporal</li>
+<li><strong>Busca patrones</strong> relacionados</li>
+<li><strong>Exporta evidencia</strong> relevante</li>
+<li><strong>Documenta hallazgos</strong> para futuras referencias</li>
+</ol>
+</div>
+<h3 id="optimizacion-de-rendimiento">Optimización de Rendimiento<a class="headerlink" href="#optimizacion-de-rendimiento" title="Permanent link">#</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Consideraciones</p>
+<ul>
+<li><strong>Limita búsquedas</strong> a rangos de tiempo específicos</li>
+<li><strong>Usa filtros</strong> antes de aplicar búsquedas de texto</li>
+<li><strong>Exporta datos</strong> en lotes para análisis pesado</li>
+<li><strong>Purga logs antiguos</strong> regularmente</li>
+</ul>
+</div>
+<h2 id="solucion-de-problemas"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:" /> Solución de Problemas<a class="headerlink" href="#solucion-de-problemas" title="Permanent link">#</a></h2>
+<h3 id="problemas-comunes">Problemas Comunes<a class="headerlink" href="#problemas-comunes" title="Permanent link">#</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Logs no aparecen</label><label for="__tabbed_6_2">Búsqueda lenta</label><label for="__tabbed_6_3">Exportación falla</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Síntomas</strong>: Tabla vacía o sin datos recientes</p>
+<p><strong>Posibles causas</strong>:
+- Filtros muy restrictivos
+- Problemas de conexión WebSocket
+- Fail2ban no está funcionando</p>
+<p><strong>Soluciones</strong>:
+- Limpia todos los filtros
+- Refresca la página
+- Verifica estado de Fail2ban en servidor</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Síntomas</strong>: Demora en mostrar resultados</p>
+<p><strong>Posibles causas</strong>:
+- Volumen muy alto de logs
+- Búsquedas sin filtros temporales
+- Recursos del servidor limitados</p>
+<p><strong>Soluciones</strong>:
+- Aplica filtros de fecha primero
+- Usa términos de búsqueda específicos
+- Contacta administrador si persiste</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Síntomas</strong>: Error al descargar datos</p>
+<p><strong>Posibles causas</strong>:
+- Demasiados registros seleccionados
+- Permisos insuficientes
+- Problema temporal del servidor</p>
+<p><strong>Soluciones</strong>:
+- Reduce rango de fechas
+- Verifica tus permisos de usuario
+- Intenta nuevamente más tarde</p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Límites del Sistema</p>
+<ul>
+<li><strong>Máximo 10,000 logs</strong> por exportación</li>
+<li><strong>Búsquedas limitadas</strong> a 90 días hacia atrás</li>
+<li><strong>Actualización en tiempo real</strong> puede pausarse con alto volumen</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Última actualización">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2 de julio de 2025 21:38:16 UTC">2 de julio de 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/AleGC019/fail2ban-dashboard" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://alertasfail2ban.xmakuno.com" target="_blank" rel="noopener" title="alertasfail2ban.xmakuno.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.4c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.3c2.2 20.4 3.3 41.8 3.3 64m28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64m112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7m-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6M8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64m186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.7z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
